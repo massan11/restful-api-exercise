@@ -1,22 +1,18 @@
 from fastapi import FastAPI
-from src.routes import router
+from src.routes import book_routes, user_routes
+from src.database import engine, Base
 
-app = FastAPI()
+# Create database tables
+Base.metadata.create_all(bind=engine)
 
-app.include_router(router)
+# Initialize FastAPI
+app = FastAPI(title="RESTful API Exercise")
 
+# Include API routes
+app.include_router(book_routes.router)
+app.include_router(user_routes.router)
+
+# Root endpoint
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to my REST API"}
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int) -> dict:
-    return {"item_id": item_id, "name": f"Item {item_id}"}
-
-@app.post("/books/")
-async def create_book(book: dict):
-    return book
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    return {"message": "Welcome to the RESTful API!"}
