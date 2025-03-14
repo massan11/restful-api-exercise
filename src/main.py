@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.routes.book_routes import book_routes, user_routes
+from src.routes.book_routes import router as book_router
 from src.database import engine, Base
 from src.models.book_models import Book  # Import the Book model
 
@@ -10,8 +10,7 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="RESTful API Exercise")
 
 # Include API routes
-app.include_router(book_routes.router)
-app.include_router(user_routes.router)
+app.include_router(book_router, prefix="/books")
 
 # Root endpoint
 @app.get("/")
