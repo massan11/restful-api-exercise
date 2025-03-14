@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.routes import book_routes, user_routes
+from src.routes.book_routes import book_routes, user_routes
 from src.database import engine, Base
 
 # Create database tables
