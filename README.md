@@ -47,16 +47,28 @@ This hands-on practice will guide you through building a RESTful API using Pytho
 ```
 /restful-api-exercise
 ├── src/
-│   ├── main.py  # Entry point
-│   ├── models.py  # Database models
-│   ├── routes.py  # API routes
-│   ├── auth.py  # Authentication (JWT)
-│   ├── database.py  # DB connection
-├── tests/  # Unit tests
+│   ├── __init__.py  # Marks `src` as a package
+│   ├── main.py  # FastAPI entry point
+│   ├── routes/
+│   │   ├── __init__.py  # Makes `routes` a package
+│   │   ├── book_routes.py  # Routes for books API
+│   │   ├── user_routes.py  # Routes for user management
+│   ├── models/
+│   │   ├── __init__.py  # Makes `models` a package
+│   │   ├── book_models.py  # Database models for books
+│   │   ├── user_models.py  # Database models for users
+│   ├── auth/
+│   │   ├── __init__.py  # Makes `auth` a package
+│   │   ├── jwt_handler.py  # JWT authentication functions
+│   ├── database.py  # Database connection
+├── tests/
+│   ├── test_main.py  # API tests
+│   ├── test_auth.py  # Authentication tests
 ├── requirements.txt  # Dependencies
-├── README.md  # Documentation
-├── .gitignore
-```
+├── .env  # Environment variables (e.g., database URL, secret keys)
+├── README.md  # Project documentation
+├── .gitignore  # Ignore unnecessary files
+└── Dockerfile  # Docker configuration
 
 ## Running the API
 
