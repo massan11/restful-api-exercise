@@ -6,7 +6,7 @@ from src.models.book_schemas import Book, BookCreate
 
 router = APIRouter()
 
-@router.get("/books/", response_model=list[Book])
+@router.get("/", response_model=list[Book])
 def read_books(db: Session = Depends(get_db)):
     books = db.query(BookModel).all()
     return books
